@@ -24,3 +24,21 @@ def _encoder(pl, num_fil):
     in_2 = InstanceNormalization()(c_2)
     lr_2 = LeakyReLU(alpha=0.01)(in_2)  # Activation layer
     return lr_2
+
+
+def encoder(pl, num_fil, p_size, is_base=False):
+    """
+    Encoder function that applies downsampling over two previous convolutional layers
+    :param pl: previous layer
+    :param num_fil: number of filters in conv3d layer
+    :param p_size: it will be used as pool size in downsampling
+    :param is_base: default is False
+    :return: layer, layer
+    """
+    # Conv block return value
+    cbrv = _encoder(pl, num_fil)
+    if is_base is True:
+        return cbrv
+    # Adding downsampling layer
+    mp = MaxPooling3D(pool_size=p_size, strides=(2, 2, 2), padding="same")(cbrv)
+    return cbrv, mp
