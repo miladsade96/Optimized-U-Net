@@ -33,7 +33,7 @@ def encoder(pl, num_fil, p_size, is_base=False):
     :param num_fil: number of filters in conv3d layer
     :param p_size: it will be used as pool size in downsampling
     :param is_base: default is False
-    :return: layer, layer
+    :return: tensor, tensor
     """
     # Conv block return value
     cbrv = _encoder(pl, num_fil)
@@ -49,7 +49,7 @@ def _decoder(pl, num_fil):
     Private decoder function that only applies Conv3D, Instance Normalization and LeakyReLU
     :param pl: previous layer
     :param num_fil: number of filters in conv3d layer
-    :return: layer
+    :return: tensor
     """
     c_1 = Conv3D(filters=num_fil, kernel_size=(3, 3, 3), strides=(1, 1, 1), padding="same")(pl)
     in_1 = InstanceNormalization()(c_1)
