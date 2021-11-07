@@ -58,3 +58,24 @@ def _decoder(pl, num_fil):
     in_2 = InstanceNormalization()(c_2)
     lr_2 = LeakyReLU(alpha=0.01)(in_2)
     return lr_2
+
+
+def decoder(pl, num_fil, has_skip_connection=False, connection=None, has_output=False):
+    """
+    Decoder function that applies Conv3DTranspose and Concatenation with encoder block convolutional layers
+    :param pl: previous layer
+    :param num_fil: number of filters in conv3d and conv3dTranspose layer
+    :param has_skip_connection: whether has concatenation layer or not
+    :param connection: encoder convolutional block return value to concatenate
+    :param has_output: whether has output channels with sigmoid activation or not
+    :return: tensor
+    """
+    ct = Conv3DTranspose(filters=num_fil, kernel_size=(2, 2, 2), strides=(2, 2, 2), padding="same")(pl)
+    if has_skip_connection is True and connection is not None:
+        con = Concatenate()([ct, connection])
+        ct = con
+    c = _decoder(ct, num_fil)
+    if has_output:
+        out = Conv3D(filters=num_fil, kernel_size=(1, 1, 1), strides=(1, 1, 1), padding="same", activation=sigmoid)(c)
+        c = out
+    return c
