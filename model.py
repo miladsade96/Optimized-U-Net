@@ -42,3 +42,19 @@ def encoder(pl, num_fil, p_size, is_base=False):
     # Adding downsampling layer
     mp = MaxPooling3D(pool_size=p_size, strides=(2, 2, 2), padding="same")(cbrv)
     return cbrv, mp
+
+
+def _decoder(pl, num_fil):
+    """
+    Private decoder function that only applies Conv3D, Instance Normalization and LeakyReLU
+    :param pl: previous layer
+    :param num_fil: number of filters in conv3d layer
+    :return: layer
+    """
+    c_1 = Conv3D(filters=num_fil, kernel_size=(3, 3, 3), strides=(1, 1, 1), padding="same")(pl)
+    in_1 = InstanceNormalization()(c_1)
+    lr_1 = LeakyReLU(alpha=0.01)(in_1)
+    c_2 = Conv3D(filters=num_fil, kernel_size=(3, 3, 3), strides=(1, 1, 1), padding="same")(lr_1)
+    in_2 = InstanceNormalization()(c_2)
+    lr_2 = LeakyReLU(alpha=0.01)(in_2)
+    return lr_2
