@@ -98,3 +98,14 @@ e_3, m_3 = encoder(pl=m_2, num_fil=128)
 e_4, m_4 = encoder(pl=m_3, num_fil=192)
 e_5, m_5 = encoder(pl=m_4, num_fil=256)
 e_6, m_6 = encoder(pl=m_5, num_fil=384)
+
+# Defining the base
+base = encoder(pl=m_6, num_fil=512, is_base=True)
+
+# Defining decoding path blocks
+d_1 = decoder(pl=base, num_fil=384)
+d_2 = decoder(pl=d_1, num_fil=265, has_skip_connection=True, connection=e_3)
+d_3 = decoder(pl=d_2, num_fil=192, has_skip_connection=True, connection=e_4)
+d_4 = decoder(pl=d_3, num_fil=128, has_skip_connection=True, connection=e_3, has_output=True)
+d_5 = decoder(pl=d_4, num_fil=96, has_skip_connection=True, connection=e_2, has_output=True)
+d_6 = decoder(pl=d_5, num_fil=64, has_skip_connection=True, connection=e_1, has_output=True)
