@@ -13,3 +13,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/EverLookNeverSee/Optimized-U-Net)
 
 ![unet architecture](U-Net_Diagram.png)
+
+
+## About
+This repository is the implementation of **Optimized U-Net for Brain Tumor Segmentation** paper.  
