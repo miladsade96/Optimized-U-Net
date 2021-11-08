@@ -109,3 +109,7 @@ d_3 = decoder(pl=d_2, num_fil=192, has_skip_connection=True, connection=e_4)
 d_4 = decoder(pl=d_3, num_fil=128, has_skip_connection=True, connection=e_3, has_output=True)
 d_5 = decoder(pl=d_4, num_fil=96, has_skip_connection=True, connection=e_2, has_output=True)
 d_6 = decoder(pl=d_5, num_fil=64, has_skip_connection=True, connection=e_1, has_output=True)
+
+
+# Creating the model
+model = Model(inputs=[in_layer], outputs=[d_4, d_5, d_6], name="Optimized_U_Net")
