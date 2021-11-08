@@ -113,3 +113,8 @@ d_6 = decoder(pl=d_5, num_fil=64, has_skip_connection=True, connection=e_1, has_
 
 # Creating the model
 model = Model(inputs=[in_layer], outputs=[d_4, d_5, d_6], name="Optimized_U_Net")
+
+
+if __name__ == '__main__':
+    # Displaying model architecture details
+    model.summary()
