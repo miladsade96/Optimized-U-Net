@@ -90,3 +90,11 @@ def decoder(pl, num_fil, has_skip_connection=False, connection=None, has_output=
 
 # Defining input layer
 in_layer = Input(shape=(5, 128, 128, 128))
+
+# Defining encoding path blocks
+e_1, m_1 = encoder(pl=in_layer, num_fil=64, is_first_conv=True)
+e_2, m_2 = encoder(pl=m_1, num_fil=96)
+e_3, m_3 = encoder(pl=m_2, num_fil=128)
+e_4, m_4 = encoder(pl=m_3, num_fil=192)
+e_5, m_5 = encoder(pl=m_4, num_fil=256)
+e_6, m_6 = encoder(pl=m_5, num_fil=384)
