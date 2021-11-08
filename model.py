@@ -79,7 +79,7 @@ def decoder(pl, num_fil, has_skip_connection=False, connection=None, has_output=
     """
     ct = Conv3DTranspose(filters=num_fil, kernel_size=(2, 2, 2), strides=(2, 2, 2), padding="same")(pl)
     if has_skip_connection is True and connection is not None:
-        con = Concatenate()([ct, connection])
+        con = Concatenate(axis=3)([ct, connection])
         ct = con
     c = _decoder(ct, num_fil)
     if has_output:
