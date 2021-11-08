@@ -17,3 +17,15 @@
 
 ## About
 This repository is the implementation of **Optimized U-Net for Brain Tumor Segmentation** paper.  
+
+
+# Authors
+* Paper:
+    * [Michal Futrega](mailto:mfutrega@nvidia.com)
+    * [Alexandre Milesi](mailto:alexandrem@nvidia.com)
+    * [Michal Marcinkiewicz](mailto:michalm@nvidia.com)
+    * [Pablo Ribalta](mailto:pribalta@nvidia.com)
+
+* Codebase:
+    * [Milad Sadeghi DM](https://github.com/EverLookNeverSee)
+    * List of [all contributors](https://github.com/EverLookNeverSee/Optimized-U-Net/graphs/contributors) to this repository
