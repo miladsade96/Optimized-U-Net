@@ -31,3 +31,7 @@ This repository is the implementation of **Optimized U-Net for Brain Tumor Segme
 * Codebase:
     * [Milad Sadeghi DM](https://github.com/EverLookNeverSee)
     * List of [all contributors](https://github.com/EverLookNeverSee/Optimized-U-Net/graphs/contributors) to this repository
+
+
+## License
+This project licensed under the MIT License - see the [LICENSE](LICENSE) file for more details.
