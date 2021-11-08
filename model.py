@@ -6,7 +6,7 @@
 
 from tensorflow.keras.activations import sigmoid
 from tensorflow_addons.layers import InstanceNormalization
-from tensorflow.keras.layers import (Conv3D, Conv3DTranspose, Concatenate, LeakyReLU, MaxPooling3D)
+from tensorflow.keras.layers import (Conv3D, Conv3DTranspose, Concatenate, LeakyReLU, MaxPooling3D, Input)
 
 
 def _encoder(pl, num_fil):
@@ -78,3 +78,7 @@ def decoder(pl, num_fil, has_skip_connection=False, connection=None, has_output=
         out = Conv3D(filters=num_fil, kernel_size=(1, 1, 1), strides=(1, 1, 1), padding="same", activation=sigmoid)(c)
         c = out
     return c
+
+
+# Defining input layer
+in_layer = Input(shape=(5, 128, 128, 128))
