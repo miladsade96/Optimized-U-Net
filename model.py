@@ -33,21 +33,21 @@ def _encoder(pl, num_fil, is_first_conv=False):
     return lr_2
 
 
-def encoder(pl, num_fil, p_size, is_base=False):
+def encoder(pl, num_fil, is_first_conv=False, is_base=False):
     """
     Encoder function that applies downsampling over two previous convolutional layers
     :param pl: previous layer
     :param num_fil: number of filters in conv3d layer
-    :param p_size: it will be used as pool size in downsampling
+    :param is_first_conv: whether this conv block is the first one or not
     :param is_base: default is False
     :return: tensor, tensor
     """
     # Conv block return value
-    cbrv = _encoder(pl, num_fil)
+    cbrv = _encoder(pl, num_fil, is_first_conv)
     if is_base is True:
         return cbrv
     # Adding downsampling layer
-    mp = MaxPooling3D(pool_size=p_size, strides=(2, 2, 2), padding="same")(cbrv)
+    mp = MaxPooling3D(strides=(2, 2, 2), padding="same")(cbrv)
     return cbrv, mp
 
 
