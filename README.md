@@ -18,7 +18,7 @@
 ## About
 This repository is the implementation of **Optimized U-Net for Brain Tumor Segmentation** paper.  
 * [Paper url](https://arxiv.org/abs/2110.03352#)
-* [PapersWthCode](https://paperswithcode.com/paper/optimized-u-net-for-brain-tumor-segmentation)
+* [PapersWithCode](https://paperswithcode.com/paper/optimized-u-net-for-brain-tumor-segmentation)
 
 
 # Authors
